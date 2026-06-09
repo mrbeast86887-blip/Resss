@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-        <title>Joy Rummy – Elite 11 Channel Verification</title>
+        <title>Joy Rummy – Channel Verification</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <style>
@@ -15,30 +15,29 @@
             }
 
             :root {
-                --bg-dark: #0A0F1C;
-                --bg-gradient: radial-gradient(ellipse at 30% 40%, #0F172A, #020617);
-                --surface: rgba(255, 255, 255, 0.98);
-                --primary: #10B981;
-                --primary-dark: #059669;
-                --primary-light: #6EE7B7;
-                --primary-glow: rgba(16, 185, 129, 0.3);
-                --secondary: #8B5CF6;
-                --accent: #F59E0B;
-                --text-main: #0F172A;
-                --text-muted: #334155;
-                --text-soft: #64748B;
-                --border: rgba(16, 185, 129, 0.2);
-                --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.08);
-                --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
-                --shadow-glow: 0 0 30px rgba(16, 185, 129, 0.4);
-                --radius-xl: 36px;
-                --radius-lg: 28px;
-                --radius-md: 20px;
+                --bg: #F4FCF8;
+                --surface: #FFFFFF;
+                --primary: #059669;
+                --primary-dark: #047857;
+                --primary-light: #D1FAE5;
+                --primary-soft: #ECFDF5;
+                --primary-glow: rgba(5, 150, 105, 0.15);
+                --text-main: #064E3B;
+                --text-muted: #4B5563;
+                --text-soft: #6B7280;
+                --border: #D1FAE5;
+                --border-dark: #A7F3D0;
+                --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+                --shadow-md: 0 12px 28px -8px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.03);
+                --shadow-glow: 0 0 20px rgba(5, 150, 105, 0.2);
+                --radius-xl: 32px;
+                --radius-lg: 24px;
+                --radius-md: 18px;
             }
 
             body {
                 font-family: 'Inter', -apple-system, system-ui, sans-serif;
-                background: var(--bg-gradient);
+                background: var(--bg);
                 color: var(--text-main);
                 min-height: 100vh;
                 display: flex;
@@ -46,30 +45,18 @@
                 justify-content: center;
                 padding: 20px;
                 position: relative;
-                overflow-x: hidden;
             }
 
-            /* animated background particles */
-            .bg-particles {
+            /* White & Green Theme - Clean Background */
+            body::before {
+                content: '';
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 100%;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(circle at 20% 50%, rgba(5, 150, 105, 0.03), transparent 70%);
                 pointer-events: none;
-                z-index: 0;
-            }
-
-            .particle {
-                position: absolute;
-                background: rgba(16, 185, 129, 0.15);
-                border-radius: 50%;
-                animation: floatParticle 8s infinite ease-in-out;
-            }
-
-            @keyframes floatParticle {
-                0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
-                50% { transform: translateY(-40px) translateX(20px); opacity: 0.6; }
             }
 
             .tg-overlay {
@@ -78,7 +65,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: #020617;
+                background: #FFFFFF;
                 z-index: 9999;
                 display: flex;
                 align-items: center;
@@ -87,7 +74,7 @@
                 text-align: center;
                 flex-direction: column;
                 gap: 20px;
-                backdrop-filter: blur(40px);
+                backdrop-filter: blur(24px);
             }
 
             .tg-overlay.hide { display: none; }
@@ -95,12 +82,12 @@
             .tg-icon-badge {
                 width: 90px;
                 height: 90px;
-                background: linear-gradient(145deg, #10B981, #059669);
+                background: linear-gradient(145deg, #D1FAE5, #A7F3D0);
                 border-radius: 50px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+                box-shadow: 0 15px 35px rgba(5, 150, 105, 0.2);
                 animation: float 2s ease-in-out infinite;
             }
 
@@ -112,23 +99,20 @@
             .tg-icon-badge svg {
                 width: 46px;
                 height: 46px;
-                stroke: white;
+                stroke: #059669;
                 stroke-width: 1.6;
             }
 
             .tg-title {
                 font-size: 26px;
                 font-weight: 800;
-                background: linear-gradient(135deg, #10B981, #34D399);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
+                color: #059669;
                 letter-spacing: -0.5px;
             }
 
             .tg-sub {
                 font-size: 14px;
-                color: #94A3B8;
+                color: #6B7280;
                 max-width: 280px;
                 line-height: 1.5;
             }
@@ -139,13 +123,13 @@
                 margin: 0 auto;
                 position: relative;
                 z-index: 2;
-                animation: fadeInUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+                animation: fadeInUp 0.5s ease-out;
             }
 
             @keyframes fadeInUp {
                 from {
                     opacity: 0;
-                    transform: translateY(40px);
+                    transform: translateY(30px);
                 }
                 to {
                     opacity: 1;
@@ -154,13 +138,12 @@
             }
 
             .top-card {
-                background: rgba(255, 255, 255, 0.98);
+                background: var(--surface);
                 border-radius: var(--radius-xl);
                 padding: 20px 24px;
                 margin-bottom: 20px;
                 box-shadow: var(--shadow-md);
-                border: 1px solid var(--border);
-                backdrop-filter: blur(10px);
+                border: 1px solid var(--border-dark);
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -176,24 +159,19 @@
             .avatar-circle {
                 width: 58px;
                 height: 58px;
-                background: linear-gradient(145deg, #10B981, #059669);
+                background: linear-gradient(145deg, #D1FAE5, #A7F3D0);
                 border-radius: 34px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
-                box-shadow: 0 6px 15px rgba(16, 185, 129, 0.3);
-                transition: transform 0.3s;
-            }
-
-            .avatar-circle:hover {
-                transform: scale(1.05);
+                box-shadow: 0 6px 15px rgba(5, 150, 105, 0.2);
             }
 
             .avatar-circle svg {
                 width: 32px;
                 height: 32px;
-                stroke: white;
+                stroke: #059669;
                 stroke-width: 1.8;
             }
 
@@ -223,40 +201,36 @@
             }
 
             .badge-status.scan {
-                background: linear-gradient(135deg, #E0E7FF, #C7D2FE);
-                color: #4F46E5;
+                background: #ECFDF5;
+                color: #059669;
+                border: 1px solid #A7F3D0;
                 animation: badgePulse 1.5s infinite;
             }
 
             @keyframes badgePulse {
-                0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
-                50% { box-shadow: 0 0 0 6px rgba(79, 70, 229, 0); }
+                0%, 100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.3); }
+                50% { box-shadow: 0 0 0 6px rgba(5, 150, 105, 0.1); }
             }
 
             .badge-status.pending {
-                background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+                background: #FEF3C7;
                 color: #D97706;
+                border: 1px solid #FDE68A;
             }
 
             .badge-status.active {
-                background: linear-gradient(135deg, #10B981, #34D399);
-                color: white;
+                background: #D1FAE5;
+                color: #064E3B;
                 box-shadow: var(--shadow-glow);
-                animation: successGlow 1s ease;
-            }
-
-            @keyframes successGlow {
-                0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
-                100% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+                border: 1px solid #A7F3D0;
             }
 
             .main-glass {
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
+                background: var(--surface);
                 border-radius: var(--radius-xl);
                 padding: 32px 28px;
                 box-shadow: var(--shadow-md);
-                border: 1px solid var(--border);
+                border: 1px solid var(--border-dark);
                 transition: all 0.3s;
             }
 
@@ -269,33 +243,33 @@
 
             .premium-loader {
                 position: relative;
-                width: 150px;
-                height: 150px;
-                margin-bottom: 35px;
+                width: 140px;
+                height: 140px;
+                margin-bottom: 32px;
             }
 
             .orbit-ring {
                 position: absolute;
                 inset: 0;
                 border-radius: 50%;
-                border: 2px solid rgba(16, 185, 129, 0.3);
+                border: 2px solid rgba(5, 150, 105, 0.2);
                 animation: expandRing 2s ease-out infinite;
             }
 
             .orbit-ring:nth-child(2) {
                 animation-delay: 0.5s;
-                border-color: rgba(139, 92, 246, 0.3);
+                border-color: rgba(5, 150, 105, 0.15);
             }
 
             .orbit-ring:nth-child(3) {
                 animation-delay: 1s;
-                border-color: rgba(245, 158, 11, 0.3);
+                border-color: rgba(5, 150, 105, 0.1);
             }
 
             @keyframes expandRing {
                 0% {
                     transform: scale(0.7);
-                    opacity: 0.6;
+                    opacity: 0.5;
                 }
                 100% {
                     transform: scale(1.4);
@@ -306,24 +280,24 @@
             .loader-core {
                 position: absolute;
                 inset: 20px;
-                background: linear-gradient(145deg, #10B981, #059669);
+                background: linear-gradient(145deg, #D1FAE5, #A7F3D0);
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+                box-shadow: 0 0 20px rgba(5, 150, 105, 0.2);
                 animation: corePulse 1.5s ease-in-out infinite;
             }
 
             @keyframes corePulse {
-                0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
-                50% { transform: scale(1.05); box-shadow: 0 0 45px rgba(16, 185, 129, 0.8); }
+                0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(5, 150, 105, 0.2); }
+                50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(5, 150, 105, 0.3); }
             }
 
             .loader-core svg {
-                width: 52px;
-                height: 52px;
-                stroke: white;
+                width: 48px;
+                height: 48px;
+                stroke: #059669;
                 stroke-width: 1.8;
                 animation: spinReverse 1s linear infinite;
             }
@@ -335,18 +309,9 @@
             .scan-headline {
                 font-size: 28px;
                 font-weight: 900;
-                background: linear-gradient(135deg, #10B981, #34D399, #059669);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
+                color: #059669;
                 margin-bottom: 12px;
                 letter-spacing: -0.5px;
-                animation: textShine 3s infinite;
-            }
-
-            @keyframes textShine {
-                0%, 100% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
             }
 
             .scan-description {
@@ -365,7 +330,7 @@
             .progress-track {
                 width: 100%;
                 height: 8px;
-                background: #E2E8F0;
+                background: #E5E7EB;
                 border-radius: 20px;
                 overflow: hidden;
                 margin-bottom: 10px;
@@ -374,7 +339,7 @@
             .progress-track-fill {
                 width: 0%;
                 height: 100%;
-                background: linear-gradient(90deg, #10B981, #34D399, #059669);
+                background: linear-gradient(90deg, #10B981, #059669);
                 border-radius: 20px;
                 transition: width 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.2);
                 position: relative;
@@ -406,52 +371,51 @@
             }
 
             .progress-label-left {
-                color: #10B981;
+                color: #059669;
                 text-transform: uppercase;
                 letter-spacing: 1.5px;
             }
 
             .progress-percent {
-                color: var(--text-muted);
+                color: var(--text-soft);
                 font-weight: 700;
             }
 
             .terminal-log {
-                background: #0F172A;
+                background: #F0FDF4;
                 border-radius: 20px;
                 padding: 16px 20px;
                 margin-top: 20px;
-                border: 1px solid rgba(16, 185, 129, 0.2);
+                border: 1px solid #D1FAE5;
                 font-family: 'JetBrains Mono', monospace;
                 font-size: 10px;
                 max-height: 120px;
                 overflow-y: auto;
-                box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
             }
 
             .log-entry {
-                color: #A7F3D0;
+                color: #064E3B;
                 padding: 5px 0;
-                border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+                border-bottom: 1px solid #D1FAE5;
                 font-size: 9.5px;
                 font-weight: 500;
                 animation: fadeSlide 0.3s ease;
             }
 
             @keyframes fadeSlide {
-                from { opacity: 0; transform: translateX(-10px); }
+                from { opacity: 0; transform: translateX(-8px); }
                 to { opacity: 1; transform: translateX(0); }
             }
 
             .log-entry::before {
                 content: '➤ ';
-                color: #10B981;
+                color: #059669;
                 font-weight: 700;
             }
 
-            .log-entry.success { color: #34D399; }
-            .log-entry.error { color: #F87171; }
-            .log-entry.warning { color: #FBBF24; }
+            .log-entry.success { color: #059669; }
+            .log-entry.error { color: #DC2626; }
+            .log-entry.warning { color: #D97706; }
 
             /* Success State */
             .success-state {
@@ -464,14 +428,14 @@
             .success-orb {
                 width: 110px;
                 height: 110px;
-                background: linear-gradient(145deg, #10B981, #059669);
+                background: linear-gradient(145deg, #D1FAE5, #A7F3D0);
                 border-radius: 60px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 margin-bottom: 28px;
                 animation: successPop 0.6s cubic-bezier(0.34, 1.2, 0.64, 1);
-                box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+                box-shadow: 0 15px 35px rgba(5, 150, 105, 0.2);
             }
 
             @keyframes successPop {
@@ -483,7 +447,7 @@
             .success-orb svg {
                 width: 56px;
                 height: 56px;
-                stroke: white;
+                stroke: #059669;
                 stroke-width: 2.5;
                 animation: checkDraw 0.5s ease 0.2s both;
             }
@@ -494,12 +458,9 @@
             }
 
             .success-title {
-                font-size: 34px;
+                font-size: 32px;
                 font-weight: 900;
-                background: linear-gradient(135deg, #10B981, #34D399);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
+                color: #059669;
                 margin-bottom: 10px;
             }
 
@@ -510,14 +471,14 @@
                 text-align: center;
             }
 
-            /* CHANNELS PAGE - PREMIUM STYLED */
+            /* CHANNELS PAGE - White & Green Theme */
             .channels-panel {
                 display: block;
                 animation: fadeInScale 0.5s ease;
             }
 
             @keyframes fadeInScale {
-                from { opacity: 0; transform: scale(0.95); }
+                from { opacity: 0; transform: scale(0.96); }
                 to { opacity: 1; transform: scale(1); }
             }
 
@@ -526,10 +487,7 @@
                 font-weight: 900;
                 text-transform: uppercase;
                 letter-spacing: 2.5px;
-                background: linear-gradient(135deg, #10B981, #34D399);
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
+                color: #059669;
                 text-align: center;
                 margin-bottom: 24px;
                 padding: 8px;
@@ -540,10 +498,10 @@
                 content: '';
                 position: absolute;
                 bottom: 0;
-                left: 25%;
-                width: 50%;
+                left: 30%;
+                width: 40%;
                 height: 2px;
-                background: linear-gradient(90deg, transparent, #10B981, transparent);
+                background: linear-gradient(90deg, transparent, #059669, transparent);
             }
 
             .channels-11grid {
@@ -558,28 +516,27 @@
 
             .channel-card {
                 background: #FFFFFF;
-                border: 2px solid #E2E8F0;
+                border: 2px solid #E5E7EB;
                 border-radius: 24px;
                 padding: 14px 8px;
                 text-align: center;
                 cursor: pointer;
                 transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.2);
                 position: relative;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-                animation: cardEntry 0.4s ease backwards;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             }
 
-            .channel-card:nth-child(1) { animation-delay: 0.02s; }
-            .channel-card:nth-child(2) { animation-delay: 0.05s; }
-            .channel-card:nth-child(3) { animation-delay: 0.08s; }
-            .channel-card:nth-child(4) { animation-delay: 0.11s; }
-            .channel-card:nth-child(5) { animation-delay: 0.14s; }
-            .channel-card:nth-child(6) { animation-delay: 0.17s; }
-            .channel-card:nth-child(7) { animation-delay: 0.20s; }
-            .channel-card:nth-child(8) { animation-delay: 0.23s; }
-            .channel-card:nth-child(9) { animation-delay: 0.26s; }
-            .channel-card:nth-child(10) { animation-delay: 0.29s; }
-            .channel-card:nth-child(11) { animation-delay: 0.32s; }
+            .channel-card:nth-child(1) { animation: cardEntry 0.4s ease backwards 0.02s; }
+            .channel-card:nth-child(2) { animation: cardEntry 0.4s ease backwards 0.05s; }
+            .channel-card:nth-child(3) { animation: cardEntry 0.4s ease backwards 0.08s; }
+            .channel-card:nth-child(4) { animation: cardEntry 0.4s ease backwards 0.11s; }
+            .channel-card:nth-child(5) { animation: cardEntry 0.4s ease backwards 0.14s; }
+            .channel-card:nth-child(6) { animation: cardEntry 0.4s ease backwards 0.17s; }
+            .channel-card:nth-child(7) { animation: cardEntry 0.4s ease backwards 0.20s; }
+            .channel-card:nth-child(8) { animation: cardEntry 0.4s ease backwards 0.23s; }
+            .channel-card:nth-child(9) { animation: cardEntry 0.4s ease backwards 0.26s; }
+            .channel-card:nth-child(10) { animation: cardEntry 0.4s ease backwards 0.29s; }
+            .channel-card:nth-child(11) { animation: cardEntry 0.4s ease backwards 0.32s; }
 
             @keyframes cardEntry {
                 from { opacity: 0; transform: translateY(20px); }
@@ -588,46 +545,48 @@
 
             .channel-card:hover {
                 transform: translateY(-3px);
-                border-color: #10B981;
-                box-shadow: 0 12px 24px -12px rgba(16, 185, 129, 0.3);
+                border-color: #A7F3D0;
+                box-shadow: 0 12px 24px -12px rgba(5, 150, 105, 0.15);
             }
 
             .channel-card.joined {
-                background: linear-gradient(145deg, #ECFDF5, #D1FAE5);
+                background: #F0FDF4;
                 border-color: #10B981;
-                box-shadow: 0 8px 20px -8px rgba(16, 185, 129, 0.4);
+                box-shadow: 0 8px 20px -8px rgba(5, 150, 105, 0.2);
                 transform: translateY(-2px);
                 animation: joinPulse 0.4s ease;
             }
 
             @keyframes joinPulse {
                 0% { transform: scale(1); }
-                50% { transform: scale(1.02); background: #A7F3D0; }
+                50% { transform: scale(1.02); background: #D1FAE5; }
                 100% { transform: scale(1); }
             }
 
             .channel-icon {
                 width: 50px;
                 height: 50px;
-                background: linear-gradient(145deg, #F1F5F9, #F8FAFC);
+                background: #F9FAFB;
                 border-radius: 28px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 margin: 0 auto 10px;
                 transition: all 0.3s;
+                border: 1px solid #E5E7EB;
             }
 
             .channel-card.joined .channel-icon {
                 background: white;
-                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+                box-shadow: 0 4px 12px rgba(5, 150, 105, 0.1);
+                border-color: #A7F3D0;
                 transform: scale(1.05);
             }
 
             .channel-icon svg {
                 width: 26px;
                 height: 26px;
-                stroke: #10B981;
+                stroke: #059669;
                 stroke-width: 1.7;
                 transition: transform 0.2s;
             }
@@ -647,7 +606,7 @@
             .channel-status {
                 font-size: 9px;
                 font-weight: 700;
-                color: #94A3B8;
+                color: #9CA3AF;
                 text-transform: uppercase;
                 letter-spacing: 0.6px;
                 transition: all 0.2s;
@@ -659,7 +618,7 @@
             }
 
             @keyframes statusChange {
-                0% { opacity: 0; transform: translateY(5px); }
+                0% { opacity: 0; transform: translateY(3px); }
                 100% { opacity: 1; transform: translateY(0); }
             }
 
@@ -698,7 +657,7 @@
             .btn-verify {
                 width: 100%;
                 padding: 18px;
-                background: linear-gradient(105deg, #10B981, #059669);
+                background: linear-gradient(105deg, #059669, #047857);
                 border: none;
                 border-radius: 60px;
                 font-family: 'Inter', sans-serif;
@@ -713,7 +672,7 @@
                 cursor: pointer;
                 transition: all 0.3s ease;
                 margin-top: 12px;
-                box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+                box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.35);
                 position: relative;
                 overflow: hidden;
             }
@@ -734,8 +693,8 @@
             }
 
             .btn-verify:active {
-                transform: scale(0.96);
-                box-shadow: 0 5px 15px -3px rgba(16, 185, 129, 0.4);
+                transform: scale(0.97);
+                box-shadow: 0 5px 15px -3px rgba(5, 150, 105, 0.35);
             }
 
             .btn-verify:disabled {
@@ -749,7 +708,7 @@
                 bottom: 30px;
                 left: 50%;
                 transform: translateX(-50%) translateY(120px);
-                background: #0F172A;
+                background: #1F2937;
                 backdrop-filter: blur(20px);
                 color: white;
                 padding: 14px 28px;
@@ -761,8 +720,7 @@
                 white-space: normal;
                 text-align: center;
                 max-width: 85vw;
-                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-                border: 1px solid rgba(16, 185, 129, 0.3);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             }
 
             .toast-notify.show {
@@ -772,16 +730,16 @@
 
             @keyframes toastBounce {
                 0% { transform: translateX(-50%) translateY(20px); opacity: 0; }
-                60% { transform: translateX(-50%) translateY(-5px); }
+                60% { transform: translateX(-50%) translateY(-3px); }
                 100% { transform: translateX(-50%) translateY(0); opacity: 1; }
             }
 
             .toast-notify.success {
-                background: linear-gradient(105deg, #10B981, #059669);
+                background: #059669;
             }
 
             .toast-notify.error {
-                background: linear-gradient(105deg, #EF4444, #DC2626);
+                background: #DC2626;
             }
 
             .hide-element { display: none; }
@@ -792,7 +750,7 @@
             }
 
             .channels-11grid::-webkit-scrollbar-track {
-                background: #E2E8F0;
+                background: #E5E7EB;
                 border-radius: 10px;
             }
 
@@ -803,7 +761,6 @@
         </style>
     </head>
     <body>
-        <div class="bg-particles" id="particles"></div>
         <div class="tg-overlay" id="tgOverlay">
             <div class="tg-icon-badge">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -824,7 +781,7 @@
                         </svg>
                     </div>
                     <div class="user-details">
-                        <h3 id="displayName">Elite Player</h3>
+                        <h3 id="displayName">Joy Player</h3>
                         <p id="displayId">TG ID: —</p>
                     </div>
                 </div>
@@ -844,13 +801,13 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="scan-headline" id="scanTitle">Elite Gateway</div>
+                        <div class="scan-headline" id="scanTitle">Joy Rummy Gateway</div>
                         <div class="scan-description" id="scanDesc">Secure authentication in progress...</div>
                         <div class="progress-wrapper">
                             <div class="progress-track"><div class="progress-track-fill" id="progressFill"></div></div>
                             <div class="progress-meta"><span class="progress-label-left" id="progressLabel">INITIALIZING</span><span class="progress-percent" id="progressPercent">0%</span></div>
                         </div>
-                        <div class="terminal-log" id="logPanel"><div class="log-entry">Booting Joy Rummy verification engine v4.0</div></div>
+                        <div class="terminal-log" id="logPanel"><div class="log-entry">Booting Joy Rummy verification engine</div></div>
                     </div>
                 </div>
 
@@ -859,7 +816,7 @@
                         <div class="success-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></div>
                         <div class="success-title">Welcome Aboard!</div>
                         <div class="scan-description" style="margin-bottom: 24px;">11/11 channels verified · Elite access unlocked</div>
-                        <button class="btn-verify" id="enterAppBtn">🚀 ENTER JOY RUMMY</button>
+                        <button class="btn-verify" id="enterAppBtn">🎮 ENTER JOY RUMMY</button>
                     </div>
                 </div>
 
@@ -867,7 +824,7 @@
                     <div class="error-state">
                         <div class="error-badge" style="width:90px;height:90px;background:#FEE2E2;border-radius:50px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;"><svg viewBox="0 0 24 24" fill="none" stroke="#DC2626" width="44" height="44"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
                         <div class="error-headline" style="font-size:28px;font-weight:800;color:#DC2626;margin-bottom:10px;">Verification Failed</div>
-                        <div class="error-message" id="errorMsgText" style="color:#64748B;">Please restart from Joy Rummy bot</div>
+                        <div class="error-message" id="errorMsgText" style="color:#6B7280;">Please restart from Joy Rummy bot</div>
                     </div>
                 </div>
 
@@ -884,24 +841,6 @@
 
         <script>
             (function() {
-                // Particles animation
-                function createParticles() {
-                    const container = document.getElementById('particles');
-                    for(let i = 0; i < 30; i++) {
-                        const particle = document.createElement('div');
-                        particle.className = 'particle';
-                        const size = Math.random() * 6 + 2;
-                        particle.style.width = size + 'px';
-                        particle.style.height = size + 'px';
-                        particle.style.left = Math.random() * 100 + '%';
-                        particle.style.top = Math.random() * 100 + '%';
-                        particle.style.animationDelay = Math.random() * 8 + 's';
-                        particle.style.animationDuration = (Math.random() * 6 + 6) + 's';
-                        container.appendChild(particle);
-                    }
-                }
-                createParticles();
-
                 const tg = window.Telegram?.WebApp;
                 const isTelegram = !!tg && !!tg.initDataUnsafe;
                 const overlay = document.getElementById('tgOverlay');
@@ -1053,16 +992,16 @@
                     addLog(`Initializing secure handshake...`, '');
                     await new Promise(r => setTimeout(r, 320));
                     if (!chatId) { addLog(`Telegram context error`, 'error'); showError('Restart from Joy Rummy bot'); return; }
-                    updateProgress(25, 'AUTH');
+                    updateProgress(28, 'AUTH');
                     scanTitleSpan.innerText = 'Identity Verified';
                     scanDescSpan.innerText = `Welcome ${tgUser?.first_name || 'Player'} ✦`;
                     addLog(`User ${tgUser?.first_name || 'Player'} authenticated`, 'success');
                     await new Promise(r => setTimeout(r, 420));
-                    updateProgress(55, 'CHANNELS');
+                    updateProgress(58, 'CHANNELS');
                     scanTitleSpan.innerText = '11 Required';
                     addLog(`Fetching 11 mandatory channels...`, 'warning');
                     await new Promise(r => setTimeout(r, 460));
-                    updateProgress(85, 'READY');
+                    updateProgress(88, 'READY');
                     addLog(`Ready: Tap channel → Join → Double-tap to verify`, 'warning');
                     await new Promise(r => setTimeout(r, 380));
                     updateProgress(100, 'COMPLETE');
@@ -1087,7 +1026,7 @@
                 
                 if (tgUser) {
                     const full = (tgUser.first_name || '') + (tgUser.last_name ? ' ' + tgUser.last_name : '');
-                    userNameEl.innerText = full.trim() || 'Elite Player';
+                    userNameEl.innerText = full.trim() || 'Joy Player';
                     userIdEl.innerText = `TG ID: ${tgUser.id}`;
                     if (tgUser.photo_url) document.getElementById('avatarElem').innerHTML = `<img src="${tgUser.photo_url}" style="width:100%;height:100%;object-fit:cover;border-radius:34px;">`;
                 }
@@ -1098,4 +1037,4 @@
             })();
         </script>
     </body>
-  </html>
+        </html>
