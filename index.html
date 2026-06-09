@@ -41,7 +41,6 @@
                 padding: 16px;
             }
 
-            /* Telegram only overlay */
             .tg-overlay {
                 position: fixed;
                 top: 0;
@@ -93,14 +92,12 @@
                 line-height: 1.5;
             }
 
-            /* main container */
             .app-wrapper {
                 max-width: 440px;
                 width: 100%;
                 margin: 0 auto;
             }
 
-            /* top card */
             .top-card {
                 background: var(--surface);
                 border-radius: var(--radius);
@@ -173,7 +170,6 @@
                 color: #059669;
             }
 
-            /* main card */
             .main-glass {
                 background: var(--surface);
                 border-radius: var(--radius);
@@ -182,7 +178,6 @@
                 border: 1px solid var(--border);
             }
 
-            /* scanning state */
             .scan-container {
                 display: flex;
                 flex-direction: column;
@@ -212,20 +207,9 @@
             }
 
             @keyframes pulseRing {
-                0% {
-                    transform: scale(0.95);
-                    opacity: 0.5;
-                }
-
-                70% {
-                    transform: scale(1.08);
-                    opacity: 0.1;
-                }
-
-                100% {
-                    transform: scale(0.95);
-                    opacity: 0.5;
-                }
+                0% { transform: scale(0.95); opacity: 0.5; }
+                70% { transform: scale(1.08); opacity: 0.1; }
+                100% { transform: scale(0.95); opacity: 0.5; }
             }
 
             .spinner-core {
@@ -238,9 +222,7 @@
             }
 
             @keyframes spinRotate {
-                to {
-                    transform: rotate(360deg);
-                }
+                to { transform: rotate(360deg); }
             }
 
             .scan-headline {
@@ -316,21 +298,12 @@
                 font-size: 9.5px;
             }
 
-            .log-entry.success {
-                color: #059669;
-            }
+            .log-entry.success { color: #059669; }
+            .log-entry.error { color: #DC2626; }
+            .log-entry.warning { color: #D97706; }
 
-            .log-entry.error {
-                color: #DC2626;
-            }
-
-            .log-entry.warning {
-                color: #D97706;
-            }
-
-            /* success state */
             .success-state {
-                display: none;
+                display: flex;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
@@ -349,15 +322,8 @@
             }
 
             @keyframes popScale {
-                from {
-                    transform: scale(0);
-                    opacity: 0;
-                }
-
-                to {
-                    transform: scale(1);
-                    opacity: 1;
-                }
+                from { transform: scale(0); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
             }
 
             .check-orb svg {
@@ -380,9 +346,8 @@
                 margin-bottom: 16px;
             }
 
-            /* error state */
             .error-state {
-                display: none;
+                display: flex;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
@@ -417,19 +382,22 @@
                 color: var(--text-muted);
             }
 
-            /* 4 channels grid - VISIBLE SECTION */
+            /* Channels Panel - Always visible when not in scan/error/success */
             .channels-panel {
-                display: none;
+                display: block;
             }
 
             .channel-header {
-                font-size: 11px;
+                font-size: 13px;
                 font-weight: 800;
                 text-transform: uppercase;
                 letter-spacing: 1.5px;
                 color: #64748B;
                 text-align: center;
                 margin-bottom: 18px;
+                background: #F1F5F9;
+                padding: 8px;
+                border-radius: 30px;
             }
 
             .channel-4grid {
@@ -514,12 +482,12 @@
                 stroke-width: 3;
             }
 
-            /* 6 FIXED CHANNELS SECTION (new) */
             .fixed-channels-section {
                 margin-top: 24px;
                 padding-top: 16px;
-                border-top: 1px solid var(--border);
+                border-top: 2px solid var(--border);
             }
+
             .fixed-channels-title {
                 font-size: 13px;
                 font-weight: 800;
@@ -528,13 +496,18 @@
                 color: #64748B;
                 margin-bottom: 14px;
                 text-align: center;
+                background: #F1F5F9;
+                padding: 8px;
+                border-radius: 30px;
             }
+
             .fixed-channels-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 12px;
                 margin-bottom: 20px;
             }
+
             .fixed-channel-card {
                 background: #F8FAFC;
                 border: 1px solid #E2E8F0;
@@ -542,26 +515,32 @@
                 padding: 12px 8px;
                 text-align: center;
                 transition: all 0.2s;
+                cursor: pointer;
             }
+
             .fixed-channel-card.joined {
                 background: #ECFDF5;
                 border-color: #A7F3D0;
             }
+
             .fixed-channel-name {
                 font-weight: 700;
                 font-size: 13px;
                 margin-bottom: 6px;
                 color: var(--text-main);
             }
+
             .fixed-channel-status {
                 font-size: 9px;
                 font-weight: 600;
                 color: #94A3B8;
                 margin-bottom: 10px;
             }
+
             .fixed-channel-card.joined .fixed-channel-status {
                 color: #059669;
             }
+
             .btn-sm-join {
                 background: #FFFFFF;
                 border: 1.5px solid #059669;
@@ -575,14 +554,17 @@
                 width: 100%;
                 font-family: 'Inter', sans-serif;
             }
+
             .btn-sm-join:active {
                 transform: scale(0.96);
             }
+
             .fixed-channel-card.joined .btn-sm-join {
                 background: #059669;
                 color: white;
                 border-color: #059669;
             }
+
             .btn-verify-fixed {
                 width: 100%;
                 padding: 12px;
@@ -601,16 +583,17 @@
                 transition: all 0.2s;
                 margin-top: 4px;
             }
+
             .btn-verify-fixed:active {
                 transform: scale(0.97);
                 background: #2563EB;
             }
+
             .btn-verify-fixed:disabled {
                 opacity: 0.6;
                 transform: none;
             }
 
-            /* buttons */
             .btn-primary-green {
                 width: 100%;
                 padding: 16px;
@@ -628,7 +611,7 @@
                 gap: 10px;
                 cursor: pointer;
                 transition: all 0.2s ease;
-                margin-top: 6px;
+                margin-top: 16px;
             }
 
             .btn-primary-green:active {
@@ -661,7 +644,6 @@
                 flex-shrink: 0;
             }
 
-            /* toast */
             .toast-notify {
                 position: fixed;
                 bottom: 24px;
@@ -686,17 +668,10 @@
                 transform: translateX(-50%) translateY(0);
             }
 
-            .toast-notify.success {
-                background: #059669;
-            }
+            .toast-notify.success { background: #059669; }
+            .toast-notify.error { background: #DC2626; }
 
-            .toast-notify.error {
-                background: #DC2626;
-            }
-
-            .hide-element {
-                display: none;
-            }
+            .hide-element { display: none; }
         </style>
     </head>
     <body>
@@ -726,7 +701,6 @@
                 <div class="badge-status scan" id="globalBadge">🔐 VERIFYING</div>
             </div>
             <div class="main-glass">
-                <!-- scanning panel -->
                 <div id="scanPanel">
                     <div class="scan-container">
                         <div class="radar-spinner">
@@ -748,7 +722,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- success panel -->
                 <div id="successPanel" style="display: none;">
                     <div class="success-state">
                         <div class="check-orb">
@@ -757,11 +730,10 @@
                             </svg>
                         </div>
                         <div class="success-title">Access Granted</div>
-                        <div class="success-text">All 4 main channels + 6 bonus channels joined · Welcome to Joy Rummy</div>
+                        <div class="success-text">All 4 main + 6 bonus channels joined · Welcome to Joy Rummy</div>
                         <button class="btn-primary-green" id="enterAppBtn">🎮 CONTINUE TO MINI APP</button>
                     </div>
                 </div>
-                <!-- error panel -->
                 <div id="errorPanel" style="display: none;">
                     <div class="error-state">
                         <div class="error-badge">
@@ -775,13 +747,11 @@
                         <div class="error-message" id="errorMsgText">Please open via official bot.</div>
                     </div>
                 </div>
-                <!-- 4 CHANNELS PANEL + 6 FIXED CHANNELS (combined) -->
                 <div id="channelsPanel" style="display: none;">
                     <div class="channels-panel">
                         <div class="channel-header">✦ JOIN 4 OFFICIAL CHANNELS ✦</div>
                         <div class="channel-4grid" id="channelsGrid"></div>
                         
-                        <!-- NEW: 6 FIXED CHANNELS SECTION -->
                         <div class="fixed-channels-section">
                             <div class="fixed-channels-title">✦ 6 BONUS CHANNELS (REQUIRED) ✦</div>
                             <div class="fixed-channels-grid" id="fixedChannelsGrid"></div>
@@ -796,7 +766,10 @@
                                 <line x1="12" y1="8" x2="12.01" y2="8" />
                             </svg>
                             <span>
-                                <b>How to join:</b> Tap main channel cards → join → DOUBLE-TAP to confirm. For bonus channels, click each "Join" button → then click VERIFY. </span>
+                                <b>How to join:</b><br/>
+                                • <b>Main channels:</b> Tap card → join → DOUBLE-TAP to confirm<br/>
+                                • <b>Bonus channels:</b> Tap "Join Channel" → join → DOUBLE-TAP card or click VERIFY BONUS button
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -809,42 +782,30 @@
                 const isTelegramEnv = !!tg && !!tg.initDataUnsafe;
                 const overlay = document.getElementById('tgOverlay');
                 const appRoot = document.getElementById('appRoot');
+                
                 if (!isTelegramEnv) {
                     overlay.classList.remove('hide-element');
                     appRoot.style.display = 'none';
                     return;
                 }
+                
                 overlay.classList.add('hide-element');
                 appRoot.style.display = 'block';
                 tg.ready();
                 tg.expand();
+                
                 const tgUser = tg.initDataUnsafe?.user || null;
                 const chatId = tgUser?.id || null;
                 
                 // 4 MAIN CHANNELS
-                const REQUIRED_CHANNELS = [{
-                    id: 'ch1',
-                    name: 'Joy Rummy Club',
-                    url: 'https://t.me/joyrummyclub',
-                    joined: false
-                }, {
-                    id: 'ch2',
-                    name: 'Joy Rummy Plus',
-                    url: 'https://t.me/joyrummyplus',
-                    joined: false
-                }, {
-                    id: 'ch3',
-                    name: 'Rummy Rewards',
-                    url: 'https://t.me/rummyrewards',
-                    joined: false
-                }, {
-                    id: 'ch4',
-                    name: 'Joy Rummy VIP',
-                    url: 'https://t.me/joyrummyvip',
-                    joined: false
-                }];
+                const REQUIRED_CHANNELS = [
+                    { id: 'ch1', name: 'Joy Rummy Club', url: 'https://t.me/joyrummyclub', joined: false },
+                    { id: 'ch2', name: 'Joy Rummy Plus', url: 'https://t.me/joyrummyplus', joined: false },
+                    { id: 'ch3', name: 'Rummy Rewards', url: 'https://t.me/rummyrewards', joined: false },
+                    { id: 'ch4', name: 'Joy Rummy VIP', url: 'https://t.me/joyrummyvip', joined: false }
+                ];
                 
-                // 6 FIXED BONUS CHANNELS (with join links)
+                // 6 BONUS CHANNELS
                 const FIXED_CHANNELS = [
                     { id: 'fix1', name: 'Joy Rummy Daily', url: 'https://t.me/joyrummydaily', joined: false },
                     { id: 'fix2', name: 'Rummy Arena', url: 'https://t.me/rummyarena', joined: false },
@@ -885,13 +846,13 @@
                     logContainer.scrollTop = logContainer.scrollHeight;
                     while (logContainer.children.length > 12) logContainer.removeChild(logContainer.firstChild);
                 }
-
+                
                 function updateProgress(percent, label) {
                     progressFill.style.width = percent + '%';
                     progressPercentSpan.innerText = percent + '%';
                     if (label) progressLabelSpan.innerText = label;
                 }
-
+                
                 function showFloatingToast(msg, type = '') {
                     const toast = document.getElementById('toastMessage');
                     toast.innerText = msg;
@@ -903,95 +864,13 @@
                         toast.className = 'toast-notify';
                     }, 2800);
                 }
-
+                
                 function setGlobalBadge(statusType, text) {
                     badgeElem.className = 'badge-status ' + statusType;
                     badgeElem.innerText = text;
                 }
                 
-                // Render 6 fixed channels with individual join buttons
-                function renderFixedChannels() {
-                    fixedGrid.innerHTML = FIXED_CHANNELS.map(ch => `
-                        <div class="fixed-channel-card ${ch.joined ? 'joined' : ''}" data-fixed-id="${ch.id}">
-                            <div class="fixed-channel-name">${ch.name}</div>
-                            <div class="fixed-channel-status">${ch.joined ? '✓ Joined' : '⚡ Not joined'}</div>
-                            <button class="btn-sm-join" data-url="${ch.url}" data-id="${ch.id}">${ch.joined ? 'Joined ✓' : '➕ Join Channel'}</button>
-                        </div>
-                    `).join('');
-                    
-                    document.querySelectorAll('.btn-sm-join').forEach(btn => {
-                        btn.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            const url = btn.dataset.url;
-                            const channelId = btn.dataset.id;
-                            const channel = FIXED_CHANNELS.find(c => c.id === channelId);
-                            if (url && !channel.joined) {
-                                if (tg && tg.openTelegramLink) tg.openTelegramLink(url);
-                                else window.open(url, '_blank');
-                                showFloatingToast(`Opening ${channel.name} — after joining, click VERIFY FIXED button`, '');
-                                addLogEntry(`Opened bonus: ${channel.name}. Click "VERIFY ALL 6 BONUS CHANNELS" after joining.`, 'warning');
-                            } else if (channel.joined) {
-                                showFloatingToast(`${channel.name} already verified ✓`, 'success');
-                            }
-                        });
-                    });
-                }
-                
-                // Verify all 6 fixed channels (simulate checking membership)
-                async function verifyFixedChannels() {
-                    verifyFixedBtn.disabled = true;
-                    const originalText = verifyFixedBtn.innerHTML;
-                    verifyFixedBtn.innerHTML = `<span class="spinner-core" style="width:16px;height:16px;border-width:2px;margin-right:6px;"></span> CHECKING...`;
-                    addLogEntry('Verifying 6 bonus channel memberships...', '');
-                    await new Promise(r => setTimeout(r, 700));
-                    
-                    let allJoinedFixed = true;
-                    for (let ch of FIXED_CHANNELS) {
-                        // In real scenario, backend would verify; here we simulate based on user action.
-                        // For demo, we require user to manually mark joined via a realistic double-confirm? 
-                        // Since we have separate verify button, we'll assume verification happens via this button click and we toggle to "joined" if not already.
-                        // To make it intuitive: when user clicks "Verify All Bonus", we treat that as them confirming they joined all 6.
-                        if (!ch.joined) {
-                            allJoinedFixed = false;
-                            break;
-                        }
-                    }
-                    
-                    if (allJoinedFixed) {
-                        addLogEntry('✅ All 6 bonus channels verified!', 'success');
-                        showFloatingToast('6 bonus channels verified successfully!', 'success');
-                        if (tg) tg.HapticFeedback?.notificationOccurred('success');
-                        renderFixedChannels();
-                    } else {
-                        const missingFixed = FIXED_CHANNELS.filter(c => !c.joined).map(c => c.name).join(', ');
-                        addLogEntry(`❌ Missing bonus channels: ${missingFixed}. Please open each channel via "Join" button, then click this verify button again.`, 'error');
-                        showFloatingToast(`Please join all 6 bonus channels first (use Join buttons) then verify.`, 'error');
-                        if (tg) tg.HapticFeedback?.notificationOccurred('error');
-                    }
-                    verifyFixedBtn.disabled = false;
-                    verifyFixedBtn.innerHTML = originalText;
-                }
-                
-                // Manually mark fixed channel as joined (via separate action)
-                // We'll add an option: double-click on fixed card marks joined? For better UX we add quick mark.
-                function initFixedChannelMark() {
-                    document.querySelectorAll('.fixed-channel-card').forEach(card => {
-                        const chId = card.dataset.fixedId;
-                        const channel = FIXED_CHANNELS.find(c => c.id === chId);
-                        card.addEventListener('dblclick', (e) => {
-                            e.stopPropagation();
-                            if (!channel.joined) {
-                                channel.joined = true;
-                                renderFixedChannels();
-                                initFixedChannelMark();
-                                addLogEntry(`✓ Manually marked joined: ${channel.name}`, 'success');
-                                showFloatingToast(`${channel.name} marked as joined`, 'success');
-                            }
-                        });
-                    });
-                }
-                
-                // Render 4 main channels with double-tap confirm logic
+                // Render main channels
                 function renderFourChannels() {
                     channelsGrid.innerHTML = REQUIRED_CHANNELS.map(ch => `
                         <div class="channel-tile ${ch.joined ? 'joined' : ''}" data-id="${ch.id}" data-url="${ch.url}">
@@ -1014,36 +893,108 @@
                         const channelId = tile.dataset.id;
                         const channelUrl = tile.dataset.url;
                         const channelObj = REQUIRED_CHANNELS.find(c => c.id === channelId);
+                        
                         tile.addEventListener('click', (e) => {
                             e.stopPropagation();
                             if (channelUrl) {
                                 if (tg && tg.openTelegramLink) tg.openTelegramLink(channelUrl);
                                 else window.open(channelUrl, '_blank');
                                 showFloatingToast(`Opening ${channelObj.name}...`, '');
-                                addLogEntry(`Opened: ${channelObj.name} — please join & double-tap to confirm`, 'warning');
+                                addLogEntry(`Opened: ${channelObj.name} — after joining, double-tap card to confirm`, 'warning');
                             }
                         });
+                        
                         tile.addEventListener('dblclick', (e) => {
                             e.stopPropagation();
                             if (!channelObj.joined) {
                                 channelObj.joined = true;
                                 renderFourChannels();
-                                addLogEntry(`✓ Membership confirmed for ${channelObj.name}`, 'success');
-                                showFloatingToast(`✅ Joined ${channelObj.name}`, 'success');
+                                addLogEntry(`✓ Confirmed joined: ${channelObj.name}`, 'success');
+                                showFloatingToast(`✅ Verified ${channelObj.name}`, 'success');
                                 if (tg) tg.HapticFeedback?.impactOccurred('light');
                             } else {
-                                showFloatingToast(`${channelObj.name} already joined ✓`, '');
+                                showFloatingToast(`${channelObj.name} already verified ✓`, '');
                             }
                         });
                     });
                 }
                 
-                // Final verification (both sets)
+                // Render bonus channels
+                function renderFixedChannels() {
+                    fixedGrid.innerHTML = FIXED_CHANNELS.map(ch => `
+                        <div class="fixed-channel-card ${ch.joined ? 'joined' : ''}" data-fixed-id="${ch.id}">
+                            <div class="fixed-channel-name">${ch.name}</div>
+                            <div class="fixed-channel-status">${ch.joined ? '✓ Joined' : '⚡ Not joined'}</div>
+                            <button class="btn-sm-join" data-url="${ch.url}" data-id="${ch.id}">${ch.joined ? '✓ Verified' : '➕ Join Channel'}</button>
+                        </div>
+                    `).join('');
+                    
+                    // Add click handlers for join buttons
+                    document.querySelectorAll('.btn-sm-join').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const url = btn.dataset.url;
+                            const channelId = btn.dataset.id;
+                            const channel = FIXED_CHANNELS.find(c => c.id === channelId);
+                            if (url && !channel.joined) {
+                                if (tg && tg.openTelegramLink) tg.openTelegramLink(url);
+                                else window.open(url, '_blank');
+                                showFloatingToast(`Opening ${channel.name}...`, '');
+                                addLogEntry(`Opened bonus: ${channel.name}. After joining, double-tap card or click VERIFY BONUS button`, 'warning');
+                            } else if (channel.joined) {
+                                showFloatingToast(`${channel.name} already verified ✓`, 'success');
+                            }
+                        });
+                    });
+                    
+                    // Add double-tap to mark joined on bonus cards
+                    document.querySelectorAll('.fixed-channel-card').forEach(card => {
+                        const chId = card.dataset.fixedId;
+                        const channel = FIXED_CHANNELS.find(c => c.id === chId);
+                        
+                        card.addEventListener('dblclick', (e) => {
+                            e.stopPropagation();
+                            if (!channel.joined) {
+                                channel.joined = true;
+                                renderFixedChannels();
+                                addLogEntry(`✓ Manually confirmed: ${channel.name}`, 'success');
+                                showFloatingToast(`✅ Verified ${channel.name}`, 'success');
+                                if (tg) tg.HapticFeedback?.impactOccurred('light');
+                            }
+                        });
+                    });
+                }
+                
+                // Verify bonus channels
+                async function verifyFixedChannels() {
+                    verifyFixedBtn.disabled = true;
+                    const originalText = verifyFixedBtn.innerHTML;
+                    verifyFixedBtn.innerHTML = `<span class="spinner-core" style="width:16px;height:16px;border-width:2px;margin-right:6px;display:inline-block;"></span> CHECKING...`;
+                    addLogEntry('Verifying 6 bonus channel memberships...', '');
+                    await new Promise(r => setTimeout(r, 600));
+                    
+                    const allJoinedFixed = FIXED_CHANNELS.every(ch => ch.joined);
+                    
+                    if (allJoinedFixed) {
+                        addLogEntry('✅ All 6 bonus channels verified!', 'success');
+                        showFloatingToast('All 6 bonus channels verified!', 'success');
+                        if (tg) tg.HapticFeedback?.notificationOccurred('success');
+                    } else {
+                        const missingFixed = FIXED_CHANNELS.filter(c => !c.joined).map(c => c.name);
+                        addLogEntry(`❌ Missing bonus channels: ${missingFixed.join(', ')}. Double-tap each after joining.`, 'error');
+                        showFloatingToast(`Please join all 6 bonus channels first (double-tap to confirm)`, 'error');
+                        if (tg) tg.HapticFeedback?.notificationOccurred('error');
+                    }
+                    verifyFixedBtn.disabled = false;
+                    verifyFixedBtn.innerHTML = originalText;
+                }
+                
+                // Final verification
                 async function runFinalVerification() {
                     if (verifyBtn.disabled) return;
                     verifyBtn.disabled = true;
                     const originalHtml = verifyBtn.innerHTML;
-                    verifyBtn.innerHTML = `<span class="spinner-core" style="width:18px;height:18px;border-width:2px;margin-right:8px;"></span> VERIFYING ALL...`;
+                    verifyBtn.innerHTML = `<span class="spinner-core" style="width:18px;height:18px;border-width:2px;margin-right:8px;display:inline-block;"></span> VERIFYING ALL...`;
                     addLogEntry('Checking all 4 main + 6 bonus channels...', '');
                     await new Promise(r => setTimeout(r, 700));
                     
@@ -1055,7 +1006,6 @@
                         showFloatingToast('Full verification successful!', 'success');
                         if (tg) tg.HapticFeedback?.notificationOccurred('success');
                         setGlobalBadge('active', '✓ FULL ACCESS');
-                        scanDiv.style.display = 'none';
                         channelsDiv.style.display = 'none';
                         successDiv.style.display = 'block';
                     } else {
@@ -1072,38 +1022,50 @@
                     }
                 }
                 
-                // Scanning flow
+                // Initial scan flow
                 async function startInitialScan() {
                     updateProgress(10, 'CONNECTING');
                     scanTitleSpan.innerText = 'Joy Rummy Gateway';
                     scanDescSpan.innerText = 'Initializing secure handshake...';
                     addLogEntry('Starting verification engine v3.0 (10 channels required)');
                     await new Promise(r => setTimeout(r, 380));
+                    
                     if (!chatId) {
                         addLogEntry('ERROR: Telegram context missing', 'error');
                         showErrorPanel('Please restart from Joy Rummy bot');
                         return false;
                     }
+                    
                     updateProgress(38, 'AUTHENTICATING');
                     scanTitleSpan.innerText = 'Identity Check';
                     scanDescSpan.innerText = `Verifying user: ${tgUser?.first_name || 'Player'}...`;
                     addLogEntry(`User ID ${chatId} authenticated`, 'success');
                     await new Promise(r => setTimeout(r, 450));
+                    
                     updateProgress(64, 'CHANNEL REQUIREMENTS');
                     scanTitleSpan.innerText = 'Channel Sync';
                     scanDescSpan.innerText = 'Fetching 10 mandatory channels...';
                     addLogEntry('Server requires 4 main + 6 bonus channel memberships', 'warning');
                     await new Promise(r => setTimeout(r, 500));
+                    
                     updateProgress(92, 'ACTION NEEDED');
-                    addLogEntry('Please join all channels (main: double-tap cards, bonus: click JOIN + verify button)', 'warning');
+                    addLogEntry('Please join all channels below (tap to open, double-tap to confirm)', 'warning');
                     await new Promise(r => setTimeout(r, 400));
+                    
                     updateProgress(100, 'READY');
+                    scanTitleSpan.innerText = 'Verify Membership';
+                    scanDescSpan.innerText = 'Join all 10 channels to continue';
+                    
+                    // Hide scan, show channels
                     scanDiv.style.display = 'none';
                     channelsDiv.style.display = 'block';
                     setGlobalBadge('pending', '⚠️ 10 CHANNELS PENDING');
+                    
+                    // Render all channels
                     renderFourChannels();
                     renderFixedChannels();
-                    initFixedChannelMark();
+                    
+                    return true;
                 }
                 
                 function showErrorPanel(msg) {
@@ -1115,9 +1077,13 @@
                 
                 function launchMiniApp() {
                     if (tg) tg.close();
-                    window.location.href = '../miniapp/';
+                    showFloatingToast('Launching Mini App...', 'success');
+                    setTimeout(() => {
+                        window.location.href = '../miniapp/';
+                    }, 500);
                 }
                 
+                // Set user info
                 if (tgUser) {
                     const full = (tgUser.first_name || '') + (tgUser.last_name ? ' ' + tgUser.last_name : '');
                     userNameEl.innerText = full.trim() || 'Joy Player';
@@ -1131,18 +1097,22 @@
                     userIdEl.innerText = 'Demo Mode';
                 }
                 
+                // Wire events
                 verifyBtn.onclick = runFinalVerification;
                 verifyFixedBtn.onclick = verifyFixedChannels;
                 launchAppBtn.onclick = launchMiniApp;
+                
+                // Start the flow
                 startInitialScan().catch(err => {
                     console.warn(err);
                     showErrorPanel('Verification engine error. Please retry.');
                 });
                 
-                document.querySelectorAll('.btn-primary-green, .btn-verify-fixed').forEach(btn => {
+                // Add haptics
+                document.querySelectorAll('.btn-primary-green, .btn-verify-fixed, .btn-sm-join').forEach(btn => {
                     btn.addEventListener('click', () => tg && tg.HapticFeedback?.impactOccurred('light'));
                 });
             })();
         </script>
     </body>
-  </html>
+        </html>
