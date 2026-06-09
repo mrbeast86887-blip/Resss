@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <title>Joy Rummy – Channel Verification</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            :root {
+                --bg: #F0FDF4;
+                --surface: #FFFFFF;
+                --primary: #059669;
+                --primary-dark: #047857;
+                --primary-light: #D1FAE5;
+                --primary-soft: #ECFDF5;
+                --text-main: #064E3B;
+                --text-muted: #4B5563;
+                --text-soft: #6B7280;
+                --border: #D1FAE5;
+                --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+                --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.06);
+                --radius-xl: 28px;
+                --radius-lg: 20px;
+                --radius-md: 16px;
+            }
+
+            body {
+                font-family: 'Inter', -apple-system, system-ui, sans-serif;
+                background: var(--bg);
+                color: var(--text-main);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 16px;
+            }
+
+            .tg-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: #FFFFFF;
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 32px;
+                text-align: center;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .tg-overlay.hide { display: none; }
+
+            .tg-icon-badge {
+                width: 80px;
+                height: 80px;
+                background: #D1FAE5;
+                border-radius: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 8px 20px rgba(5, 150, 105, 0.15);
+            }
+
+            .tg-icon-badge svg {
+                width: 42px;
+                height: 42px;
+                stroke: #059669;
+            }
+
+            .tg-title {
+                font-size: 24px;
+                font-weight: 800;
+                color: #059669;
+            }
+
+            .tg-sub {
+                font-size: 14px;
+                color: #6B7280;
+                max-width: 280px;
+            }
+
+            .app-wrapper {
+                max-width: 480px;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .top-card {
+                background: var(--surface);
+                border-radius: var(--radius-xl);
+                padding: 16px 20px;
+                margin-bottom: 16px;
+                box-shadow: var(--shadow-sm);
+                border: 1px solid var(--border);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .profile-area {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .avatar-circle {
+                width: 52px;
+                height: 52px;
+                background: #D1FAE5;
+                border-radius: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+            }
+
+            .avatar-circle svg {
+                width: 28px;
+                height: 28px;
+                stroke: #059669;
+            }
+
+            .user-details h3 {
+                font-size: 16px;
+                font-weight: 700;
+                color: var(--text-main);
+                margin-bottom: 2px;
+            }
+
+            .user-details p {
+                font-size: 11px;
+                color: var(--text-soft);
+                font-family: 'JetBrains Mono', monospace;
+            }
+
+            .badge-status {
+                padding: 6px 14px;
+                border-radius: 40px;
+                font-size: 11px;
+                font-weight: 600;
+            }
+
+            .badge-status.scan {
+                background: #ECFDF5;
+                color: #059669;
+                border: 1px solid #D1FAE5;
+            }
+
+            .badge-status.pending {
+                background: #FEF3C7;
+                color: #D97706;
+            }
+
+            .badge-status.active {
+                background: #D1FAE5;
+                color: #059669;
+            }
+
+            .main-glass {
+                background: var(--surface);
+                border-radius: var(--radius-xl);
+                padding: 24px 20px;
+                box-shadow: var(--shadow-md);
+                border: 1px solid var(--border);
+            }
+
+            /* Scan State */
+            .scan-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .radar-spinner {
+                width: 100px;
+                height: 100px;
+                background: #ECFDF5;
+                border-radius: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 24px;
+                position: relative;
+            }
+
+            .radar-spinner::before {
+                content: '';
+                position: absolute;
+                inset: -4px;
+                border-radius: 54px;
+                background: #10B981;
+                opacity: 0.2;
+                animation: pulseRing 1.8s infinite;
+            }
+
+            @keyframes pulseRing {
+                0% { transform: scale(0.95); opacity: 0.3; }
+                70% { transform: scale(1.1); opacity: 0; }
+                100% { transform: scale(0.95); opacity: 0.3; }
+            }
+
+            .spinner-core {
+                width: 44px;
+                height: 44px;
+                border: 3px solid #D1FAE5;
+                border-top-color: #059669;
+                border-radius: 50%;
+                animation: spinRotate 0.8s linear infinite;
+            }
+
+            @keyframes spinRotate {
+                to { transform: rotate(360deg); }
+            }
+
+            .scan-headline {
+                font-size: 22px;
+                font-weight: 800;
+                color: #059669;
+                margin-bottom: 8px;
+            }
+
+            .scan-description {
+                font-size: 13px;
+                color: var(--text-soft);
+                margin-bottom: 24px;
+                text-align: center;
+            }
+
+            .progress-wrapper {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .progress-track {
+                width: 100%;
+                height: 6px;
+                background: #E5E7EB;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .progress-track-fill {
+                width: 0%;
+                height: 100%;
+                background: linear-gradient(90deg, #10B981, #059669);
+                border-radius: 10px;
+                transition: width 0.4s ease;
+            }
+
+            .progress-meta {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 8px;
+                font-size: 10px;
+                font-weight: 600;
+            }
+
+            .progress-label-left {
+                color: #059669;
+            }
+
+            .terminal-log {
+                background: #F0FDF4;
+                border-radius: 14px;
+                padding: 12px 16px;
+                margin-top: 16px;
+                border: 1px solid #D1FAE5;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 10px;
+                max-height: 100px;
+                overflow-y: auto;
+            }
+
+            .log-entry {
+                color: #064E3B;
+                padding: 3px 0;
+                font-size: 9.5px;
+            }
+
+            .log-entry.success { color: #059669; }
+            .log-entry.error { color: #DC2626; }
+            .log-entry.warning { color: #D97706; }
+
+            /* Success State */
+            .success-state {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .check-orb {
+                width: 80px;
+                height: 80px;
+                background: #D1FAE5;
+                border-radius: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 20px;
+                animation: popScale 0.4s ease;
+            }
+
+            @keyframes popScale {
+                from { transform: scale(0); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+
+            .check-orb svg {
+                width: 42px;
+                height: 42px;
+                stroke: #059669;
+            }
+
+            .success-title {
+                font-size: 26px;
+                font-weight: 800;
+                color: #059669;
+                margin-bottom: 8px;
+            }
+
+            /* Error State */
+            .error-state {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .error-badge {
+                width: 70px;
+                height: 70px;
+                background: #FEE2E2;
+                border-radius: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+
+            .error-badge svg {
+                width: 34px;
+                height: 34px;
+                stroke: #DC2626;
+            }
+
+            .error-headline {
+                font-size: 22px;
+                font-weight: 700;
+                color: #DC2626;
+                margin-bottom: 8px;
+            }
+
+            /* Channels Grid - Clean & Simple */
+            .channels-panel {
+                display: block;
+            }
+
+            .channels-header {
+                font-size: 12px;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                color: #059669;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .channels-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-bottom: 24px;
+            }
+
+            .channel-card {
+                background: #FFFFFF;
+                border: 1.5px solid #E5E7EB;
+                border-radius: 18px;
+                padding: 14px 10px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                position: relative;
+            }
+
+            .channel-card.joined {
+                background: #F0FDF4;
+                border-color: #10B981;
+            }
+
+            .channel-card.joining {
+                opacity: 0.7;
+                pointer-events: none;
+            }
+
+            .channel-icon {
+                width: 48px;
+                height: 48px;
+                background: #F9FAFB;
+                border-radius: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 10px;
+            }
+
+            .channel-card.joined .channel-icon {
+                background: #FFFFFF;
+            }
+
+            .channel-icon svg {
+                width: 24px;
+                height: 24px;
+                stroke: #059669;
+            }
+
+            .channel-name {
+                font-weight: 700;
+                font-size: 13px;
+                margin-bottom: 5px;
+                color: var(--text-main);
+            }
+
+            .channel-status {
+                font-size: 9px;
+                font-weight: 600;
+                color: #9CA3AF;
+            }
+
+            .channel-card.joined .channel-status {
+                color: #059669;
+            }
+
+            .check-badge {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                width: 20px;
+                height: 20px;
+                background: #10B981;
+                border-radius: 10px;
+                display: none;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .channel-card.joined .check-badge {
+                display: flex;
+            }
+
+            .check-badge svg {
+                width: 12px;
+                height: 12px;
+                stroke: white;
+            }
+
+            .joining-spinner {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border: 2px solid #D1FAE5;
+                border-top-color: #059669;
+                border-radius: 50%;
+                animation: spinRotate 0.6s linear infinite;
+                margin-left: 6px;
+            }
+
+            .btn-verify {
+                width: 100%;
+                padding: 16px;
+                background: #059669;
+                border: none;
+                border-radius: 48px;
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+                font-size: 15px;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                margin-top: 8px;
+                box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+            }
+
+            .btn-verify:active {
+                transform: scale(0.97);
+            }
+
+            .btn-verify:disabled {
+                opacity: 0.6;
+                transform: none;
+            }
+
+            .toast-notify {
+                position: fixed;
+                bottom: 24px;
+                left: 50%;
+                transform: translateX(-50%) translateY(120px);
+                background: #1F2937;
+                color: white;
+                padding: 12px 24px;
+                border-radius: 48px;
+                font-size: 13px;
+                font-weight: 500;
+                z-index: 10000;
+                transition: transform 0.3s ease;
+                text-align: center;
+                max-width: 85vw;
+            }
+
+            .toast-notify.show {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .toast-notify.success {
+                background: #059669;
+            }
+
+            .toast-notify.error {
+                background: #DC2626;
+            }
+
+            .hide-element { display: none; }
+        </style>
+    </head>
+    <body>
+        <div class="tg-overlay" id="tgOverlay">
+            <div class="tg-icon-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M21.41 3.58L2.39 11.17c-1.28.52-1.27 1.24-.23 1.56l4.85 1.51 11.23-7.07c.53-.32 1.01-.15.61.21l-9.1 8.21-.35 5.1c.51 0 .73-.23 1.01-.5l2.43-2.35 5.05 3.72c.93.51 1.6.25 1.83-.86l3.32-15.63c.34-1.37-.52-1.99-1.68-1.52z"/>
+                </svg>
+            </div>
+            <div class="tg-title">Joy Rummy</div>
+            <div class="tg-sub">Open from Telegram Mini App to verify</div>
+        </div>
+
+        <div class="app-wrapper" id="appRoot" style="display: none;">
+            <div class="top-card">
+                <div class="profile-area">
+                    <div class="avatar-circle" id="avatarElem">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="1.8"/>
+                            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/>
+                        </svg>
+                    </div>
+                    <div class="user-details">
+                        <h3 id="displayName">Joy Player</h3>
+                        <p id="displayId">TG ID: —</p>
+                    </div>
+                </div>
+                <div class="badge-status scan" id="globalBadge">🔐 VERIFY</div>
+            </div>
+
+            <div class="main-glass">
+                <div id="scanPanel">
+                    <div class="scan-container">
+                        <div class="radar-spinner"><div class="spinner-core"></div></div>
+                        <div class="scan-headline" id="scanTitle">Secure Gateway</div>
+                        <div class="scan-description" id="scanDesc">Connecting to Joy Rummy...</div>
+                        <div class="progress-wrapper">
+                            <div class="progress-track"><div class="progress-track-fill" id="progressFill"></div></div>
+                            <div class="progress-meta"><span class="progress-label-left" id="progressLabel">INIT</span><span class="progress-percent" id="progressPercent">0%</span></div>
+                        </div>
+                        <div class="terminal-log" id="logPanel"><div class="log-entry">Booting verification engine...</div></div>
+                    </div>
+                </div>
+
+                <div id="successPanel" style="display: none;">
+                    <div class="success-state">
+                        <div class="check-orb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        <div class="success-title">Access Granted</div>
+                        <div class="scan-description">All channels joined · Welcome to Joy Rummy</div>
+                        <button class="btn-verify" id="enterAppBtn">🎮 ENTER MINI APP</button>
+                    </div>
+                </div>
+
+                <div id="errorPanel" style="display: none;">
+                    <div class="error-state">
+                        <div class="error-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+                        <div class="error-headline">Verification Failed</div>
+                        <div class="error-message" id="errorMsgText">Please restart from Joy Rummy bot</div>
+                    </div>
+                </div>
+
+                <div id="channelsPanel" style="display: none;">
+                    <div class="channels-panel">
+                        <div class="channels-header">✦ JOIN 11 CHANNELS ✦</div>
+                        <div class="channels-grid" id="channelsGrid"></div>
+                        <button class="btn-verify" id="verifyAllBtn">✓ VERIFY & CONTINUE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="toastMessage" class="toast-notify"></div>
+
+        <script>
+            (function() {
+                const tg = window.Telegram?.WebApp;
+                const isTelegram = !!tg && !!tg.initDataUnsafe;
+                const overlay = document.getElementById('tgOverlay');
+                const appRoot = document.getElementById('appRoot');
+                
+                if (!isTelegram) {
+                    overlay.classList.remove('hide-element');
+                    appRoot.style.display = 'none';
+                    return;
+                }
+                
+                overlay.classList.add('hide-element');
+                appRoot.style.display = 'block';
+                tg.ready();
+                tg.expand();
+                
+                const tgUser = tg.initDataUnsafe?.user || null;
+                const chatId = tgUser?.id || null;
+                
+                const ALL_CHANNELS = [
+                    { id: 'ch1', name: 'Anmol Looter', url: 'https://t.me/+ujBbqNUUcvc2MTQ1', joined: false, joining: false },
+                    { id: 'ch2', name: 'Techno Earner', url: 'https://t.me/+M4yNsE8Vn8VjMmFl', joined: false, joining: false },
+                    { id: 'ch3', name: 'Op Looter', url: 'https://t.me/+Hd3qGhMs418wYzU1', joined: false, joining: false },
+                    { id: 'ch4', name: 'Singh Loots', url: 'https://t.me/+EWRTrM6TfbQ4Y2Nl', joined: false, joining: false },
+                    { id: 'ch5', name: 'All Yono Codes', url: 'https://t.me/+WpHJg0u2AfgyZTg1', joined: false, joining: false },
+                    { id: 'ch6', name: 'Earn Cash Tips', url: 'https://t.me/+zZnpAQ94w0hlOTk1', joined: false, joining: false },
+                    { id: 'ch7', name: 'All Yono Pr0mo', url: 'https://t.me/+pEa1guoClwY0M2E1', joined: false, joining: false },
+                    { id: 'ch8', name: 'All Earn Official', url: 'https://t.me/+oMFiGqZMushlNjVl', joined: false, joining: false },
+                    { id: 'ch9', name: 'Technical Aritra', url: 'https://t.me/+7ezw79py4AZkM2U1', joined: false, joining: false },
+                    { id: 'ch10', name: 'Yono Promocodes', url: 'https://t.me/+abKTdzwBGRQ0ZWU1', joined: false, joining: false },
+                    { id: 'ch11', name: 'Earning Market', url: 'https://t.me/+OYJmpBsT08NmODNl', joined: false, joining: false }
+                ];
+                
+                const scanDiv = document.getElementById('scanPanel');
+                const successDiv = document.getElementById('successPanel');
+                const errorDiv = document.getElementById('errorPanel');
+                const channelsDiv = document.getElementById('channelsPanel');
+                const badgeElem = document.getElementById('globalBadge');
+                const userNameEl = document.getElementById('displayName');
+                const userIdEl = document.getElementById('displayId');
+                const progressFill = document.getElementById('progressFill');
+                const progressLabelSpan = document.getElementById('progressLabel');
+                const progressPercentSpan = document.getElementById('progressPercent');
+                const logContainer = document.getElementById('logPanel');
+                const scanTitleSpan = document.getElementById('scanTitle');
+                const scanDescSpan = document.getElementById('scanDesc');
+                const channelsGrid = document.getElementById('channelsGrid');
+                const verifyAllBtn = document.getElementById('verifyAllBtn');
+                const enterAppBtn = document.getElementById('enterAppBtn');
+                
+                let pendingJoinTimeout = null;
+                
+                function addLog(msg, type = '') {
+                    const div = document.createElement('div');
+                    div.className = 'log-entry';
+                    if (type) div.classList.add(type);
+                    div.textContent = `> ${msg}`;
+                    logContainer.appendChild(div);
+                    logContainer.scrollTop = logContainer.scrollHeight;
+                    while(logContainer.children.length > 10) logContainer.removeChild(logContainer.firstChild);
+                }
+                
+                function updateProgress(pct, label) {
+                    progressFill.style.width = pct + '%';
+                    progressPercentSpan.innerText = pct + '%';
+                    if (label) progressLabelSpan.innerText = label;
+                }
+                
+                function toast(msg, type = '') {
+                    const t = document.getElementById('toastMessage');
+                    t.innerText = msg;
+                    t.className = 'toast-notify show';
+                    if (type === 'success') t.classList.add('success');
+                    if (type === 'error') t.classList.add('error');
+                    setTimeout(() => { t.classList.remove('show'); t.className = 'toast-notify'; }, 2500);
+                }
+                
+                function setBadge(status, text) {
+                    badgeElem.className = 'badge-status ' + status;
+                    badgeElem.innerText = text;
+                }
+                
+                function markChannelJoined(channelId) {
+                    const channel = ALL_CHANNELS.find(c => c.id === channelId);
+                    if (channel && !channel.joined) {
+                        channel.joined = true;
+                        channel.joining = false;
+                        renderChannels();
+                        addLog(`✓ ${channel.name} verified!`, 'success');
+                        toast(`✅ Joined ${channel.name}`, 'success');
+                        if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred('light');
+                        
+                        const allJoined = ALL_CHANNELS.every(ch => ch.joined);
+                        if (allJoined) {
+                            addLog(`All 11 channels joined! Click VERIFY & CONTINUE`, 'success');
+                            toast(`All channels ready! Tap Verify`, 'success');
+                        }
+                    }
+                }
+                
+                function startJoining(channelId) {
+                    const channel = ALL_CHANNELS.find(c => c.id === channelId);
+                    if (channel && !channel.joined && !channel.joining) {
+                        channel.joining = true;
+                        renderChannels();
+                        
+                        if (pendingJoinTimeout) clearTimeout(pendingJoinTimeout);
+                        pendingJoinTimeout = setTimeout(() => {
+                            markChannelJoined(channelId);
+                            pendingJoinTimeout = null;
+                        }, 2500);
+                    }
+                }
+                
+                function renderChannels() {
+                    channelsGrid.innerHTML = ALL_CHANNELS.map(ch => `
+                        <div class="channel-card ${ch.joined ? 'joined' : ''} ${ch.joining ? 'joining' : ''}" data-id="${ch.id}" data-url="${ch.url}">
+                            <div class="check-badge"><svg viewBox="0 0 24 24" fill="none" stroke="white"><polyline points="20 6 9 17 4 12"/></svg></div>
+                            <div class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21.41 3.58L2.39 11.17c-1.28.52-1.27 1.24-.23 1.56l4.85 1.51 11.23-7.07c.53-.32 1.01-.15.61.21l-9.1 8.21-.35 5.1c.51 0 .73-.23 1.01-.5l2.43-2.35 5.05 3.72c.93.51 1.6.25 1.83-.86l3.32-15.63c.34-1.37-.52-1.99-1.68-1.52z"/></svg></div>
+                            <div class="channel-name">${ch.name}</div>
+                            <div class="channel-status">${ch.joined ? '✓ VERIFIED' : (ch.joining ? 'JOINING...' : '⚡ TAP TO JOIN')}</div>
+                        </div>
+                    `).join('');
+                    
+                    document.querySelectorAll('.channel-card').forEach(card => {
+                        const id = card.dataset.id;
+                        const url = card.dataset.url;
+                        const channel = ALL_CHANNELS.find(c => c.id === id);
+                        
+                        card.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            if (channel.joined) {
+                                toast(`${channel.name} already verified`, 'success');
+                                return;
+                            }
+                            if (channel.joining) {
+                                toast(`Joining ${channel.name}...`, '');
+                                return;
+                            }
+                            if (url) {
+                                if (tg?.openTelegramLink) tg.openTelegramLink(url);
+                                else window.open(url, '_blank');
+                                toast(`Opening ${channel.name}...`, '');
+                                addLog(`Opened ${channel.name} — Auto-verifying in 2-3 sec`, 'warning');
+                                startJoining(id);
+                            }
+                        });
+                    });
+                }
+                
+                async function verifyAll() {
+                    if (verifyAllBtn.disabled) return;
+                    verifyAllBtn.disabled = true;
+                    const original = verifyAllBtn.innerHTML;
+                    verifyAllBtn.innerHTML = `<span style="width:18px;height:18px;border:2px solid white;border-top-color:transparent;border-radius:50%;display:inline-block;animation:spinRotate 0.6s linear infinite;"></span> VERIFYING...`;
+                    addLog(`Checking all 11 channels...`, '');
+                    await new Promise(r => setTimeout(r, 600));
+                    
+                    const allJoined = ALL_CHANNELS.every(ch => ch.joined);
+                    if (allJoined) {
+                        addLog(`✅ ALL 11 CHANNELS VERIFIED! Access granted.`, 'success');
+                        toast(`Verification complete! Welcome!`, 'success');
+                        if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+                        setBadge('active', '✓ ACCESS');
+                        channelsDiv.style.display = 'none';
+                        successDiv.style.display = 'block';
+                    } else {
+                        const missing = ALL_CHANNELS.filter(ch => !ch.joined).map(ch => ch.name);
+                        addLog(`❌ Missing ${missing.length} channels: ${missing.slice(0,4).join(', ')}${missing.length>4?'...':''}`, 'error');
+                        toast(`Please tap each channel to join (auto-verifies in 2-3 sec)`, 'error');
+                        if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('error');
+                        verifyAllBtn.disabled = false;
+                        verifyAllBtn.innerHTML = original;
+                    }
+                }
+                
+                async function startScan() {
+                    updateProgress(10, 'CONNECT');
+                    addLog(`Initializing secure connection...`, '');
+                    await new Promise(r => setTimeout(r, 350));
+                    if (!chatId) { addLog(`Telegram context error`, 'error'); showError('Restart from Joy Rummy bot'); return; }
+                    updateProgress(35, 'AUTH');
+                    scanTitleSpan.innerText = 'Identity Check';
+                    scanDescSpan.innerText = `Welcome ${tgUser?.first_name || 'Player'} ✦`;
+                    addLog(`User ${tgUser?.first_name || 'Player'} authenticated`, 'success');
+                    await new Promise(r => setTimeout(r, 400));
+                    updateProgress(65, 'CHANNELS');
+                    scanTitleSpan.innerText = '11 Required';
+                    addLog(`Fetching mandatory channels...`, 'warning');
+                    await new Promise(r => setTimeout(r, 450));
+                    updateProgress(90, 'READY');
+                    addLog(`Tap any channel → Join → Auto-verifies in 2-3 seconds`, 'warning');
+                    await new Promise(r => setTimeout(r, 350));
+                    updateProgress(100, 'DONE');
+                    scanDiv.style.display = 'none';
+                    channelsDiv.style.display = 'block';
+                    setBadge('pending', '⚠️ 11 CHANNELS');
+                    renderChannels();
+                }
+                
+                function showError(msg) {
+                    scanDiv.style.display = 'none';
+                    errorDiv.style.display = 'block';
+                    document.getElementById('errorMsgText').innerText = msg;
+                    setBadge('scan', 'BLOCKED');
+                }
+                
+                function launchApp() {
+                    if (tg) tg.close();
+                    toast(`Launching Joy Rummy...`, 'success');
+                    setTimeout(() => { window.location.href = '../miniapp/'; }, 400);
+                }
+                
+                if (tgUser) {
+                    const full = (tgUser.first_name || '') + (tgUser.last_name ? ' ' + tgUser.last_name : '');
+                    userNameEl.innerText = full.trim() || 'Joy Player';
+                    userIdEl.innerText = `TG ID: ${tgUser.id}`;
+                    if (tgUser.photo_url) document.getElementById('avatarElem').innerHTML = `<img src="${tgUser.photo_url}" style="width:100%;height:100%;object-fit:cover;border-radius:28px;">`;
+                }
+                
+                verifyAllBtn.onclick = verifyAll;
+                enterAppBtn.onclick = launchApp;
+                startScan().catch(e => { console.warn(e); showError('Verification error. Retry.'); });
+            })();
+        </script>
+    </body>
+                              </html>
